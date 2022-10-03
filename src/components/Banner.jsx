@@ -31,7 +31,7 @@ const Banner = ({
         {desc1}
       </Text>
       <Button fontSize="xl">
-        <Link href={linkName}>{buttonText}</Link>
+        <Link to="/search">{buttonText}</Link>
       </Button>
     </Box>
   </Flex>
