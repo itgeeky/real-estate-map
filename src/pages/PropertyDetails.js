@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import React from "react";
+import { dummyProperties, dummyObject } from "../utils/dummyData";
 
 const PropertyDetails = () => {
   const [property, setProperty] = useState({});
@@ -25,19 +26,35 @@ const PropertyDetails = () => {
       shadowUrl: require("leaflet/dist/images/marker-shadow.png")
     });
   }, []);
-  const getProperty = useCallback(async () => {
-    const data = await fetchApi(
-      `${baseUrl}/properties/detail?externalID=${propId}`
-    );
-    return data;
-  }, [propId]);
+
+  // const getProperty = useCallback(async () => {
+  //   const data = await fetchApi(
+  //     `${baseUrl}/properties/detail?externalID=${propId}`
+  //   );
+  //   return data;
+   
+  // }, [propId]);
+
+  // useEffect(() => {
+  //   getProperty().then((res) => {
+  //     setProperty(res);
+  //   });
+  // }, [getProperty]);
+  // console.log(property)
 
   useEffect(() => {
-    getProperty().then((res) => {
-      setProperty(res);
-    });
-  }, [getProperty]);
+    setProperty(getProperty())
+  }, [])
+  console.log(property)
+  const getProperty = () => {
+    const data = dummyProperties.find((el)=> 
+      el.externalID === propId
+    )
+    return data
+  }
 
+  const amenities = dummyObject.amenities
+  const description = dummyObject.description
   const {
     price,
     rentFrequency,
@@ -47,11 +64,11 @@ const PropertyDetails = () => {
     area,
     agency,
     isVerified,
-    description,
+    //description,
     type,
     purpose,
     furnishingStatus,
-    amenities,
+    // amenities,
     geography,
   } = property;
 
@@ -129,7 +146,7 @@ const PropertyDetails = () => {
             )}
           </Flex>
           <Box>
-            {amenities.length && (
+            {amenities && (
               <Text fontSize="2xl" fontWeight="black" marginTop="5">
                 Facilites:
               </Text>

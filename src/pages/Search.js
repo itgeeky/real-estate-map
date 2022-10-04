@@ -1,13 +1,14 @@
-import { useLocation } from 'react-router-dom'
-import { useEffect, useState, useCallback } from 'react'
-import { Flex, Box, Text, Icon } from '@chakra-ui/react';
-import { BsFilter } from 'react-icons/bs';
-import { baseUrl, fetchApi } from '../utils/fetchApi';
-import noresult from '../assets/images/noresult.svg'
-import SearchFilters from '../components/SearchFilter';
-import Property from '../components/Property';
+import { useLocation } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { Flex, Box, Text, Icon, Button } from "@chakra-ui/react";
+import { BsFilter } from "react-icons/bs";
+import { baseUrl, fetchApi } from "../utils/fetchApi";
+import noresult from "../assets/images/noresult.svg";
+import SearchFilters from "../components/SearchFilter";
+import Property from "../components/Property";
 
-const Search = () => { 
+const Search = () => {
+  /*
   const [searchFilters, setSearchFilters] = useState(false);
   const [properties, setProperties ]=useState({})
   const location = useLocation()
@@ -36,13 +37,17 @@ const Search = () => {
     });
   }, [getProperty]);
   
-
+*/
+  const [showFilters, setShowFilters] = useState(false);
   return (
-    <SearchFilters/>
-  )
-}
+    <Flex h="100" w="100" border="1px solid red">
+      <Flex w="50%" border="1px solid blue">
+        <Button onClick={()=> setShowFilters((curr)=> !curr)}>Show Filters</Button>
+        {showFilters && <SearchFilters/>}
+      </Flex>
+      <Box w="50%"></Box>
+    </Flex>
+  );
+};
 
-export default Search
-
-
-
+export default Search;

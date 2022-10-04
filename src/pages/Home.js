@@ -3,26 +3,33 @@ import { baseUrl, fetchApi } from "../utils/fetchApi";
 import { Box, Flex } from "@chakra-ui/react";
 import Banner from "../components/Banner";
 import Property from "../components/Property";
+import { dummyProperties } from "../utils/dummyData";
 
 const Home = () => {
   const [properties, setProperties] = useState([]);
   useEffect(() => {
-    getProperties().then((res) => {
-      setProperties(res);
-    });
-  }, []);
+    setProperties(dummyProperties)
+  }, [])
+  
+  // useEffect(() => {
+  //   getProperties().then((res) => {
+  //     setProperties(res);
+  //   });
+  // }, []);
 
   
 
-  const getProperties = async () => {
-    const propertyForSale = await fetchApi(
-      `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=8`
-    );
-    return propertyForSale.hits;
-  };
+  // const getProperties = async () => {
+  //   const propertyForSale = await fetchApi(
+  //     `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=8`
+  //   );
+    
+  //   return propertyForSale.hits;
+    
+  // };
 
   return (
-    <Box>
+    <Box position="absolute">
       <Banner
         purpose={"RENT A HOME"}
         title1={"Rental homes for"}
