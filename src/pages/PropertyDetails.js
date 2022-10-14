@@ -5,7 +5,7 @@ import { BsGridFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 import millify from "millify";
 import { baseUrl, fetchApi } from "../utils/fetchApi";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import React from "react";
@@ -41,11 +41,11 @@ const PropertyDetails = () => {
   //   });
   // }, [getProperty]);
   // console.log(property)
-
+  const [map, setMap] = useState(null)
+  
   useEffect(() => {
     setProperty(getProperty())
   }, [])
-  console.log(property)
   const getProperty = () => {
     const data = dummyProperties.find((el)=> 
       el.externalID === propId
@@ -71,6 +71,19 @@ const PropertyDetails = () => {
     // amenities,
     geography,
   } = property;
+  let center = [geography?.lat, geography?.lng]
+  const verify =() => {
+    if (map) {
+      const contains = map.getBounds().contains(center);
+      console.log(contains)
+    }
+  }
+  // useEffect(() => {
+  //   if (mapRef) {
+  //     const contains = mapRef.leafletElement.getBounds();
+  //     console.log(contains)
+  //   }
+  // }, []);
 
   return (
     <>
@@ -147,7 +160,7 @@ const PropertyDetails = () => {
           </Flex>
           <Box>
             {amenities && (
-              <Text fontSize="2xl" fontWeight="black" marginTop="5">
+              <Text fontSize="2xl" fontWeight="black" marginTop="5" onClick={verify}>
                 Facilites:
               </Text>
             )}
@@ -169,8 +182,8 @@ const PropertyDetails = () => {
                 ))
               )}
             </Flex>
-            <Box w="100%" h="400">
-              <MapContainer style={{ height: "450px", width: "100%" }} center={[geography.lat, geography.lng]} zoom={13} scrollWheelZoom={false}>
+            <Box w="100%" h="400" >
+              <MapContainer style={{ height: "450px", width: "100%" }} center={[geography.lat, geography.lng]} zoom={13} scrollWheelZoom={false} ref={setMap}>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

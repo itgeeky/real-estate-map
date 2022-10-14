@@ -1,11 +1,8 @@
-import { useLocation } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import { Flex, Box, Text, Icon, Button } from "@chakra-ui/react";
-import { BsFilter } from "react-icons/bs";
-import { baseUrl, fetchApi } from "../utils/fetchApi";
-import noresult from "../assets/images/noresult.svg";
-import SearchFilters from "../components/SearchFilter";
-import Property from "../components/Property";
+import { useState } from 'react';
+import { Flex, Box } from '@chakra-ui/react';
+import SearchFilters from '../components/SearchFilter';
+
+import { RiArrowDropDownLine }  from 'react-icons/ri';
 
 const Search = () => {
   /*
@@ -38,15 +35,20 @@ const Search = () => {
   }, [getProperty]);
   
 */
-  const [showFilters, setShowFilters] = useState(false);
+  const [ showFilters, setShowFilters ] = useState(false)
   return (
-    <Flex h="100" w="100" border="1px solid red">
-      <Flex w="50%" border="1px solid blue">
-        <Button onClick={()=> setShowFilters((curr)=> !curr)}>Show Filters</Button>
-        {showFilters && <SearchFilters/>}
+    <>
+      <Flex flexWrap="wrap" >
+        <Box>
+          { !showFilters && <h5 onClick={()=> setShowFilters(curr => !curr)}>Show Filters {RiArrowDropDownLine} </h5>}
+          { showFilters && <SearchFilters />}
+        </Box>
       </Flex>
-      <Box w="50%"></Box>
-    </Flex>
+      <Flex h="100" w="100" border="1px solid red">
+        <Flex w="50%" border="1px solid blue"></Flex>
+        <Box w="50%"></Box>
+      </Flex>
+    </>
   );
 };
 

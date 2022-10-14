@@ -9,16 +9,6 @@ export const filterData = [
   },
   {
     items: [
-      { name: 'Daily', value: 'daily' },
-      { name: 'Weekly', value: 'weekly' },
-      { name: 'Monthly', value: 'monthly' },
-      { name: 'Yearly', value: 'yearly' },
-    ],
-    placeholder: 'Rent Frequency',
-    queryName: 'rentFrequency',
-  },
-  {
-    items: [
       { name: '10,000', value: '10000' },
       { name: '20,000', value: '20000' },
       { name: '30,000', value: '30000' },
@@ -50,7 +40,7 @@ export const filterData = [
       { name: '700,000', value: '700000' },
       { name: '800,000', value: '800000' },
       { name: '900,000', value: '900000' },
-      { name: '1000,000', value: '1000000' },
+      { name: '1,000,000', value: '1000000' },
     ],
     placeholder: 'Max Price(USD)',
     queryName: 'maxPrice',
@@ -66,19 +56,6 @@ export const filterData = [
     ],
     placeholder: 'Sort',
     queryName: 'sort',
-  },
-  {
-    items: [
-      { name: '1000', value: '1000' },
-      { name: '2000', value: '2000' },
-      { name: '3000', value: '3000' },
-      { name: '4000', value: '4000' },
-      { name: '5000', value: '5000' },
-      { name: '10000', value: '10000' },
-      { name: '20000', value: '20000' },
-    ],
-    placeholder: 'Max Area(sqft)',
-    queryName: 'areaMax',
   },
   {
     items: [
@@ -111,14 +88,6 @@ export const filterData = [
     ],
     placeholder: 'Baths',
     queryName: 'bathsMin',
-  },
-  {
-    items: [
-      { name: 'Furnished', value: 'furnished' },
-      { name: 'Unfurnished', value: 'unfurnished' },
-    ],
-    placeholder: 'Furnish Type',
-    queryName: 'furnishingStatus',
   },
   {
     items: [
